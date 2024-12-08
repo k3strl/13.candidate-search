@@ -11,7 +11,9 @@ const Nav = () => {
       <ul>      
         {/* <ul style={{ display: "flex,", gap: "1rem", listStyle: "none"}}> */}
       <li>
-        <Link to= "/">Home</Link>
+        <Link to= "/">
+          Home
+        </Link>
       </li>
         <li>
           <Link to= "/">
