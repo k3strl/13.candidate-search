@@ -1,6 +1,6 @@
 // imports
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { searchGithub, searchGithubUser } from '../api/API';
 import { CandidateInterface } from '../interfaces/Candidate.interface'
 import { useNavigate } from 'react-router-dom';
@@ -41,7 +41,7 @@ const handleSearch = () => {
   }
 }
 
-// Save candidate to local storage button (Green)
+// Save candidate to local storage (Green + button)
 const saveCandidate = () => {
   if (candidate) {
     setSavedCandidates([...savedCandidates, candidate]);
@@ -49,7 +49,7 @@ const saveCandidate = () => {
   }
 };
 
-// Skip button (Red)
+// Skip button (Red - button)
 const skipCandidate = () => {
   getRandomCandidate();
 };
@@ -93,6 +93,7 @@ const goToSavedCandidates = () => {
           </div>
           <div>
             <button className="skip-button" onClick={skipCandidate}>-</button>
+            <button className="save-button" onClick={saveCandidate}>+</button>
           </div>
         </div>
       ) : (
