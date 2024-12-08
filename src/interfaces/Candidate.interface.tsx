@@ -1,6 +1,5 @@
 // TODO: Create an interface for the Candidate objects returned by the API
-
-
+import { createContext } from 'react';
 
 
 export interface CandidateInterface {
@@ -12,3 +11,7 @@ export interface CandidateInterface {
     public_repos: string, // # of public repos
 
 }
+
+const CandidateContext = createContext<CandidateInterface | null>( {} as CandidateInterface);
+
+export default CandidateContext;
