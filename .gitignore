@@ -145,6 +145,7 @@ celerybeat.pid
 
 # Environments
 .env
+./environment/.env
 .venv
 env/
 venv/
@@ -178,7 +179,3 @@ cython_debug/
 
 ## Initial starter code from BCS
 .startercode.zip
-
-## Environment variables
-.env
-environment/.env
