@@ -51,25 +51,23 @@ const SavedCandidates = () => {
             {savedCandidates.map((candidate) => (
               <tr key={candidate.id}>
                 <td>
+                  <td>{candidate.login}</td>
                   <img
                     src={candidate.avatar_url}
                     alt={`Avatar for ${candidate.login}`}
                   />
                 </td>
                 <td>
-                  {candidate.name ? candidate.name : "No Email on Record"}
-                </td>
-                <td>{candidate.login}</td>
-                <td>
-                  {candidate.location
-                    ? candidate.location
-                    : "No Email on Record"}
+                  {candidate.name ? candidate.name : `${candidate.login} has no name listed.`}
                 </td>
                 <td>
-                  {candidate.email ? candidate.email : "No Email on Record"}
+                  {candidate.location ? candidate.location : `${candidate.login} has no location listed.`}
                 </td>
                 <td>
-                  {candidate.company ? candidate.company : "No Email on Record"}
+                  {candidate.email ? candidate.email : `${candidate.login} has no email listed.`}
+                </td>
+                <td>
+                  {candidate.company ? candidate.company : `${candidate.login} has no company listed.`}
                 </td>
                 <td>
                   <a href={candidate.html_url}>Website</a>
@@ -104,7 +102,10 @@ const SavedCandidates = () => {
             </thead>
           </table>
           <div>
-            <tbody>No Saved Candidates</tbody>
+            <tbody>
+              <p>No saved candidates.</p>
+              <p>Save a candidate from your search and see them listed here.</p>
+            </tbody>
           </div>
         </div>
       )}
