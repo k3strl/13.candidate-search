@@ -1,15 +1,11 @@
 import { Link } from "react-router-dom";
 
 // DONE: Add necessary code to display the navigation bar and link between the pages
-// TODO: Style this page (here or in index.css #decideLater)
-
-
 
 const Nav = () => {
   return (
     <nav>
       <ul style={{ display: "flex,", gap: "1rem", listStyle: "none"}}>      
-        {/* <ul style={{ display: "flex,", gap: "1rem", listStyle: "none"}}> */}
       <li>
         <Link to="/">
           Home
