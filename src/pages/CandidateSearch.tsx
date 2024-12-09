@@ -13,18 +13,22 @@ const CandidateSearch = () => {
 
   // Retrieve a random candidate
   const getRandomCandidate = async () => {
-    const candidates = await searchGithub(); 
-    if (candidates.length > 0) {
-      const detailedCandidate = await searchGithubUser(candidates[0].login);
-      setCandidate(detailedCandidate);
+    try {
+      const candidates = await searchGithub(); 
+      if (candidates.length > 0) {
+        const candidateDetails = await searchGithubUser(candidates[0].login);
+        setCandidate(candidateDetails);
+      }
+    } catch (error) {
+      console.error("Error fetching random candidate:", error);
     }
   };
 
   // Search for a specific candidate by username
 const getSpecificCandidate = async (username: string) => {
   try {
-    const detailedCandidate = await searchGithubUser(username);
-    setCandidate(detailedCandidate);
+    const candidateDetails = await searchGithubUser(username);
+    setCandidate(candidateDetails);
   } catch (error) {
     console.error("Candidate not found", error);
     setCandidate(null);
@@ -60,7 +64,7 @@ const goToSavedCandidates = () => {
 
   return (
     <div className="candidate-search">
-      <h1>CandidateSearch</h1>
+      <h1>Candidate Search</h1>
       {/* Search Input and Button */}
       <div className="search-box">
         <input
@@ -96,7 +100,10 @@ const goToSavedCandidates = () => {
           </div>
         </div>
       ) : (
-      <p>No candidates found. Try searching again!</p>
+      <div>
+        <p>Type in a username to search for it.</p>
+        <p>Or, leave it blank for a random username!</p>
+      </div>
       )}
 
       {/* Potential Candidates button */}

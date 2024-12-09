@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
-// import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { CandidateInterface as Candidate } from "../interfaces/Candidate.interface";
 
 const SavedCandidates = () => {
-  // const location = useLocation();
-  const [savedCandidates, setSavedCandidates] = useState<Candidate[]>([]);
+  const location = useLocation();
+  const initialCandidates: Candidate[] = location.state?.savedCandidates || [];
 
-
+  const [savedCandidates, setSavedCandidates] = useState<Candidate[]>(() => {
+    const storedCandidates = localStorage.getItem('savedCandidates');
+    const parsedCandidates = storedCandidates ? JSON.parse(storedCandidates) : initialCandidates;
+    return parsedCandidates;
+  });
 
   // Save candidates to local storage
   useEffect(() => {
@@ -17,7 +21,7 @@ const SavedCandidates = () => {
     console.log("Saved Candidates:", savedCandidates);
   }, []);
 
-  // update list of candidates 
+  // Remove saved candidate 
   const deleteCandidate = (id: number) => {
     const updatedCandidates = savedCandidates.filter(
       (candidate) => candidate.id !== id
@@ -70,14 +74,16 @@ const SavedCandidates = () => {
                 <td>
                   <a href={candidate.html_url}>Website</a>
                 </td>
-                <button
-                  onClick={() =>
-                    candidate.id !== undefined && deleteCandidate(candidate.id)
-                  }
-                  style={{ margin: "20px", backgroundColor: "red" }}
-                >
-                  -
-                </button>
+                <td>
+                  <button
+                    onClick={() =>
+                      candidate.id !== undefined && deleteCandidate(candidate.id)
+                    }
+                    style={{ margin: "20px", backgroundColor: "red" }}
+                  >
+                    -
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -97,7 +103,9 @@ const SavedCandidates = () => {
               </tr>
             </thead>
           </table>
-          <tbody>No Saved Candidates</tbody>
+          <div>
+            <tbody>No Saved Candidates</tbody>
+          </div>
         </div>
       )}
     </div>
