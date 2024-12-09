@@ -1,25 +1,33 @@
 import { useEffect, useState } from "react";
+// import { useLocation } from 'react-router-dom';
 import { CandidateInterface as Candidate } from "../interfaces/Candidate.interface";
 
-
-
 const SavedCandidates = () => {
+  // const location = useLocation();
   const [savedCandidates, setSavedCandidates] = useState<Candidate[]>([]);
 
+
+
+  // Save candidates to local storage
   useEffect(() => {
-    const savedCandidates = JSON.parse(localStorage.getItem("savedCandidates") || "[]");
+    const savedCandidates = JSON.parse(
+      localStorage.getItem("savedCandidates") || "[]"
+    );
     setSavedCandidates(savedCandidates);
     console.log("Saved Candidates:", savedCandidates);
   }, []);
 
+  // update list of candidates 
   const deleteCandidate = (id: number) => {
-    const updatedCandidates = savedCandidates.filter((candidate) => candidate.id !== id);
+    const updatedCandidates = savedCandidates.filter(
+      (candidate) => candidate.id !== id
+    );
     setSavedCandidates(updatedCandidates);
     localStorage.setItem("savedCandidates", JSON.stringify(updatedCandidates));
   };
 
   return (
-    <div style={{margin: "40px"}}>
+    <div>
       <h1>Potential Candidates</h1>
       {savedCandidates.length > 0 ? (
         <table>
@@ -39,17 +47,37 @@ const SavedCandidates = () => {
             {savedCandidates.map((candidate) => (
               <tr key={candidate.id}>
                 <td>
-                  <img src={candidate.avatar_url} alt={`Avatar for ${candidate.login}`} style={{height: "100px"}}/>
+                  <img
+                    src={candidate.avatar_url}
+                    alt={`Avatar for ${candidate.login}`}
+                  />
                 </td>
-                <td>{candidate.name ? candidate.name : "No Email on Record"}</td>
+                <td>
+                  {candidate.name ? candidate.name : "No Email on Record"}
+                </td>
                 <td>{candidate.login}</td>
-                <td>{candidate.location ? candidate.location : "No Email on Record"}</td>
-                <td>{candidate.email ? candidate.email : "No Email on Record"}</td>
-                <td>{candidate.company ? candidate.company : "No Email on Record"}</td>
+                <td>
+                  {candidate.location
+                    ? candidate.location
+                    : "No Email on Record"}
+                </td>
+                <td>
+                  {candidate.email ? candidate.email : "No Email on Record"}
+                </td>
+                <td>
+                  {candidate.company ? candidate.company : "No Email on Record"}
+                </td>
                 <td>
                   <a href={candidate.html_url}>Website</a>
                 </td>
-                <button onClick={() => candidate.id !== undefined && deleteCandidate(candidate.id)} style={{ margin: "20px", backgroundColor: "red"}}>-</button>
+                <button
+                  onClick={() =>
+                    candidate.id !== undefined && deleteCandidate(candidate.id)
+                  }
+                  style={{ margin: "20px", backgroundColor: "red" }}
+                >
+                  -
+                </button>
               </tr>
             ))}
           </tbody>

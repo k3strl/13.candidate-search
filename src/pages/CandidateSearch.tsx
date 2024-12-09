@@ -6,7 +6,6 @@ import { CandidateInterface } from '../interfaces/Candidate.interface'
 import { useNavigate } from 'react-router-dom';
 
 const CandidateSearch = () => {
-  
   const [candidate, setCandidate] = useState<CandidateInterface | null>(null); 
   const [savedCandidates, setSavedCandidates] = useState<CandidateInterface[]>([]);
   const [searchTerm, setSearchTerm] = useState(''); //state for search input
