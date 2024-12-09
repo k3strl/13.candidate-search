@@ -57,7 +57,7 @@ const skipCandidate = () => {
   getRandomCandidate();
 };
 
-// Potential Candidates page w/ saved candidates
+// Saved Candidates page
 const goToSavedCandidates = () => {
   navigate('/SavedCandidates', { state: { savedCandidates } });
 };
@@ -71,7 +71,7 @@ const goToSavedCandidates = () => {
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search for specific username, or leave blank for a random public user."
+          placeholder="Search here or leave blank."
         />
         <button onClick={handleSearch}>Search</button>
       </div>
@@ -91,7 +91,7 @@ const goToSavedCandidates = () => {
             <p>Company: {candidate.company ?? 'N/A'}</p>
             <p>Bio: {candidate.bio ?? 'N/A'}</p>
             <a href={candidate.html_url} target="_blank" rel="noopener noreferrer">
-              View My Profile!
+              View this user's profile
             </a>
           </div>
           <div>
@@ -101,13 +101,13 @@ const goToSavedCandidates = () => {
         </div>
       ) : (
       <div>
-        <p>Type in a username to search for it.</p>
-        <p>Or, leave it blank for a random username!</p>
+        <p>Type in a GitHub username to search for it,</p>
+        <p>or leave it blank for a random GitHub profile.</p>
       </div>
       )}
 
-      {/* Potential Candidates button */}
-      <button onClick={goToSavedCandidates}>View Potential Candidates</button>
+      {/* Saved Candidates button */}
+      <button onClick={goToSavedCandidates}>View Saved Candidates</button>
     </div>
   );
 };

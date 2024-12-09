@@ -32,7 +32,7 @@ const SavedCandidates = () => {
 
   return (
     <div>
-      <h1>Potential Candidates</h1>
+      <h1>Saved Candidates</h1>
       {savedCandidates.length > 0 ? (
         <table>
           <thead>

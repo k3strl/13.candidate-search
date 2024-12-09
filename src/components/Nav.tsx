@@ -8,16 +8,16 @@ import { Link } from "react-router-dom";
 const Nav = () => {
   return (
     <nav>
-      <ul>      
+      <ul style={{ display: "flex,", gap: "1rem", listStyle: "none"}}>      
         {/* <ul style={{ display: "flex,", gap: "1rem", listStyle: "none"}}> */}
       <li>
-        <Link to= "/">
+        <Link to="/">
           Home
         </Link>
       </li>
         <li>
-          <Link to= "/">
-            Potential Candidates
+          <Link to= "SavedCandidates">
+            Saved Candidates
           </Link>
         </li>
       </ul>
