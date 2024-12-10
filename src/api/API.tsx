@@ -12,11 +12,11 @@ const searchGithub = async () => {
     );
     const data = await response.json();
     if (!response.ok) {
-      throw new Error('invalid API response, check the network tab');
+      throw new Error("invalid API response, check the network tab");
     }
     return data;
   } catch (err) {
-    console.error('An error occurred while fetching random candidates:', err);
+    console.error("An error occurred while fetching random candidates:", err);
     return [];
   }
 };
@@ -30,7 +30,7 @@ const searchGithubUser = async (username: string) => {
     });
     const data = await response.json();
     if (!response.ok) {
-      throw new Error('invalid API response, check the network tab');
+      throw new Error("invalid API response, check the network tab");
     }
     return data;
   } catch (err) {

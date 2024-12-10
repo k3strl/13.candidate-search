@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import { CandidateInterface as Candidate } from "../interfaces/Candidate.interface";
 
 const SavedCandidates = () => {
@@ -7,8 +7,10 @@ const SavedCandidates = () => {
   const initialCandidates: Candidate[] = location.state?.savedCandidates || [];
 
   const [savedCandidates, setSavedCandidates] = useState<Candidate[]>(() => {
-    const storedCandidates = localStorage.getItem('savedCandidates');
-    const parsedCandidates = storedCandidates ? JSON.parse(storedCandidates) : initialCandidates;
+    const storedCandidates = localStorage.getItem("savedCandidates");
+    const parsedCandidates = storedCandidates
+      ? JSON.parse(storedCandidates)
+      : initialCandidates;
     return parsedCandidates;
   });
 
@@ -21,7 +23,7 @@ const SavedCandidates = () => {
     console.log("Saved Candidates:", savedCandidates);
   }, []);
 
-  // Remove saved candidate 
+  // Remove saved candidate
   const deleteCandidate = (id: number) => {
     const updatedCandidates = savedCandidates.filter(
       (candidate) => candidate.id !== id
@@ -58,16 +60,24 @@ const SavedCandidates = () => {
                   />
                 </td>
                 <td>
-                  {candidate.name ? candidate.name : `${candidate.login} has no name listed.`}
+                  {candidate.name
+                    ? candidate.name
+                    : `${candidate.login} has no name listed.`}
                 </td>
                 <td>
-                  {candidate.location ? candidate.location : `${candidate.login} has no location listed.`}
+                  {candidate.location
+                    ? candidate.location
+                    : `${candidate.login} has no location listed.`}
                 </td>
                 <td>
-                  {candidate.email ? candidate.email : `${candidate.login} has no email listed.`}
+                  {candidate.email
+                    ? candidate.email
+                    : `${candidate.login} has no email listed.`}
                 </td>
                 <td>
-                  {candidate.company ? candidate.company : `${candidate.login} has no company listed.`}
+                  {candidate.company
+                    ? candidate.company
+                    : `${candidate.login} has no company listed.`}
                 </td>
                 <td>
                   <a href={candidate.html_url}>Website</a>
@@ -75,7 +85,8 @@ const SavedCandidates = () => {
                 <td>
                   <button
                     onClick={() =>
-                      candidate.id !== undefined && deleteCandidate(candidate.id)
+                      candidate.id !== undefined &&
+                      deleteCandidate(candidate.id)
                     }
                     style={{ margin: "20px", backgroundColor: "red" }}
                   >
