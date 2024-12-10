@@ -1,8 +1,7 @@
 const searchGithub = async () => {
-  console.log(import.meta.env.VITE_GITHUB_TOKEN)
+  // console.log(import.meta.env.VITE_GITHUB_TOKEN);
   try {
     const start = Math.floor(Math.random() * 100000000) + 1;
-    // console.log(import.meta.env);
     const response = await fetch(
       `https://api.github.com/users?since=${start}`,
       {
@@ -11,12 +10,10 @@ const searchGithub = async () => {
         },
       }
     );
-    // console.log('Response:', response);
     const data = await response.json();
     if (!response.ok) {
       throw new Error('invalid API response, check the network tab');
     }
-    // console.log('Data:', data);
     return data;
   } catch (err) {
     console.error('An error occurred while fetching random candidates:', err);
